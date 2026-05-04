@@ -1,0 +1,36 @@
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+
+        /*int n = cost.length;
+
+        int[] dp = new int[n + 1];
+
+        dp[n] = 0;
+
+        dp[n - 1] = cost[n - 1];
+
+        for(int i = n -2 ; i >= 0; i--){
+            dp[i] = cost[i] + Math.min(dp[i + 1], dp[i + 2]);
+        } 
+
+        return Math.min(dp[0], dp[1]);
+        */
+
+
+        int n = cost.length;
+
+        int next = 0;
+
+        int nextNext = 0;
+
+        for(int i = n - 1; i >= 0; i--){
+            int current = cost[i] + Math.min(next, nextNext);
+
+            nextNext =  next;
+            next = current;
+        }
+
+        return Math.min(next,nextNext);
+        
+    }
+}
